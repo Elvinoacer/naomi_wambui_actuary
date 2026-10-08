@@ -1,0 +1,654 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-plex-mono);
+  --font-display: var(--font-manrope);
+  --font-accent: var(--font-instrument);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-risk: var(--risk);
+  --color-risk-soft: var(--risk-soft);
+  --color-actuary: var(--actuary);
+  --color-actuary-soft: var(--actuary-soft);
+  --color-sens: var(--sens);
+  --color-sens-soft: var(--sens-soft);
+  --color-surface: var(--surface);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Light theme — per specification */
+  --background: #f8fafc;
+  --foreground: #111827;
+  --card: #ffffff;
+  --card-foreground: #111827;
+  --popover: #ffffff;
+  --popover-foreground: #111827;
+  --primary: #2563eb;
+  --primary-foreground: #f8fafc;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #111827;
+  --muted: #eef2f7;
+  --muted-foreground: #64748b;
+  --accent: #e8f0fe;
+  --accent-foreground: #1e40af;
+  --destructive: #dc2626;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #2563eb;
+  --chart-1: #2563eb;
+  --chart-2: #0f9d76;
+  --chart-3: #d97706;
+  --chart-4: #0ea5e9;
+  --chart-5: #8b5cf6;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #111827;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #f8fafc;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #111827;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #2563eb;
+
+  /* Actuarial palette */
+  --risk: #2563eb;
+  --risk-soft: #dbeafe;
+  --actuary: #0f9d76;
+  --actuary-soft: #d1fae5;
+  --sens: #d97706;
+  --sens-soft: #fef3c7;
+  --surface: #ffffff;
+
+  /* Grid line color */
+  --grid-line: rgba(37, 99, 235, 0.07);
+  --glow-opacity: 0.5;
+}
+
+.dark {
+  /* Dark theme — per specification */
+  --background: #0b1120;
+  --foreground: #f8fafc;
+  --card: #111827;
+  --card-foreground: #f8fafc;
+  --popover: #111827;
+  --popover-foreground: #f8fafc;
+  --primary: #60a5fa;
+  --primary-foreground: #0b1120;
+  --secondary: #16223a;
+  --secondary-foreground: #f8fafc;
+  --muted: #141d33;
+  --muted-foreground: #a5b4c4;
+  --accent: #16263f;
+  --accent-foreground: #bfdbfe;
+  --destructive: #f87171;
+  --border: #243044;
+  --input: #243044;
+  --ring: #60a5fa;
+  --chart-1: #60a5fa;
+  --chart-2: #34d399;
+  --chart-3: #fbbf24;
+  --chart-4: #38bdf8;
+  --chart-5: #a78bfa;
+  --sidebar: #111827;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #60a5fa;
+  --sidebar-primary-foreground: #0b1120;
+  --sidebar-accent: #16223a;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: #243044;
+  --sidebar-ring: #60a5fa;
+
+  /* Actuarial palette */
+  --risk: #60a5fa;
+  --risk-soft: rgba(96, 165, 250, 0.14);
+  --actuary: #34d399;
+  --actuary-soft: rgba(52, 211, 153, 0.13);
+  --sens: #fbbf24;
+  --sens-soft: rgba(251, 191, 36, 0.13);
+  --surface: #101a2e;
+
+  --grid-line: rgba(96, 165, 250, 0.08);
+  --glow-opacity: 0.35;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--risk);
+    color: var(--primary-foreground);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 8px;
+    border: 2px solid var(--background);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+
+  /* Focus visibility for a11y */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  /* ---- Graph-paper grid (actuarial chart paper) ---- */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .bg-grid-fade {
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 20%, black 35%, transparent 100%);
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 20%, black 35%, transparent 100%);
+  }
+
+  .bg-grid-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
+    mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
+  }
+
+  /* ---- Fine dotted texture ---- */
+  .bg-dots {
+    background-image: radial-gradient(circle, var(--grid-line) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* ---- Glass panel ---- */
+  .glass {
+    background: color-mix(in srgb, var(--card) 86%, transparent);
+    backdrop-filter: blur(16px) saturate(1.5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  }
+
+  /* ---- Heavier glass for fixed chrome ---- */
+  .glass-solid {
+    background: color-mix(in srgb, var(--card) 96%, transparent);
+    backdrop-filter: blur(20px) saturate(1.7);
+    -webkit-backdrop-filter: blur(20px) saturate(1.7);
+  }
+
+  /* ---- Gradient text ---- */
+  .text-gradient {
+    background: linear-gradient(115deg, var(--risk) 0%, var(--actuary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Editorial name gradient — leads with light, resolves into brand hues */
+  .text-gradient-hero {
+    background: linear-gradient(
+      108deg,
+      color-mix(in srgb, var(--foreground) 88%, var(--risk)) 0%,
+      var(--risk) 58%,
+      var(--actuary) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-warm {
+    background: linear-gradient(115deg, var(--risk) 0%, var(--sens) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ---- Film-grain noise overlay ---- */
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  /* ---- Marquee ---- */
+  .animate-marquee {
+    animation: marquee 38s linear infinite;
+  }
+  .animate-marquee-slow {
+    animation: marquee 64s linear infinite;
+  }
+  .marquee-paused:hover .animate-marquee,
+  .marquee-paused:hover .animate-marquee-slow {
+    animation-play-state: paused;
+  }
+
+  /* ---- Chart draw-in ---- */
+  .draw-line {
+    stroke-dasharray: var(--dash, 1200);
+    stroke-dashoffset: var(--dash, 1200);
+    animation: drawline 2.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+
+  /* ---- Pulsing availability dot ---- */
+  .pulse-dot {
+    position: relative;
+  }
+  .pulse-dot::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 9999px;
+    border: 1.5px solid var(--actuary);
+    animation: pulsering 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* ---- Underline link sweep ---- */
+  .link-sweep {
+    position: relative;
+  }
+  .link-sweep::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1.5px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .link-sweep:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* ---- Image duotone treatment for cohesion ---- */
+  .img-editorial {
+    filter: saturate(0.82) contrast(1.06) brightness(0.96);
+  }
+
+  /* ---- Ghost outline numerals (chapter cinema) ---- */
+  .text-outline {
+    -webkit-text-stroke: 1.5px color-mix(in srgb, currentColor 26%, transparent);
+    color: transparent;
+  }
+  .text-outline-faint {
+    -webkit-text-stroke: 1px color-mix(in srgb, currentColor 16%, transparent);
+    color: transparent;
+  }
+
+  /* ---- Hero foundation word — the interactive instrument ----
+     Four registered layers, one type size, all band-aligned:
+       · back  — emerald chromatic twin, parallax-offset behind
+       · glow  — the scanner's colour bloom, trailing the light
+       · spot  — the scanner: gradient-filled letters revealed inside
+                 a radius that follows the cursor (--sx/--sy)
+       · front — blue outline letters; each glyph is an interactive
+                 group that inks to a solid duotone fill on hover
+     The rest pose already carries colour: the light parks over the
+     word's left-centre until the first pointer move — and stays
+     there on touch devices. */
+  .ghost-stroke-risk {
+    color: color-mix(in srgb, var(--risk) 9%, transparent);
+    -webkit-text-stroke: 3px color-mix(in srgb, var(--risk) 86%, transparent);
+  }
+  .ghost-stroke-actuary {
+    color: color-mix(in srgb, var(--actuary) 8%, transparent);
+    -webkit-text-stroke: 3px color-mix(in srgb, var(--actuary) 74%, transparent);
+  }
+  .dark .ghost-stroke-risk {
+    -webkit-text-stroke-color: color-mix(in srgb, var(--risk) 80%, transparent);
+  }
+  .dark .ghost-stroke-actuary {
+    -webkit-text-stroke-color: color-mix(in srgb, var(--actuary) 66%, transparent);
+  }
+  @media (min-width: 1024px) {
+    .ghost-stroke-risk,
+    .ghost-stroke-actuary {
+      -webkit-text-stroke-width: 3.8px;
+    }
+  }
+  /* light mode carries less atmospheric contrast — reinforce the stroke */
+  html:not(.dark) .ghost-stroke-risk,
+  html:not(.dark) .ghost-stroke-actuary {
+    -webkit-text-stroke-width: 3.4px;
+  }
+  @media (min-width: 1024px) {
+    html:not(.dark) .ghost-stroke-risk,
+    html:not(.dark) .ghost-stroke-actuary {
+      -webkit-text-stroke-width: 4.2px;
+    }
+  }
+
+  /* Per-letter interaction — the glyph inks up and lifts under the
+     pointer. The hover group is a separate span from the entrance
+     wrapper, so framer's inline transform never fights this CSS one. */
+  .ghost-letter {
+    position: relative;
+    display: inline-block;
+    pointer-events: auto;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ghost-letter .g-stroke {
+    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ghost-letter .g-fill {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    color: transparent;
+    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    background: linear-gradient(104deg, var(--actuary) 14%, var(--risk) 96%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .ghost-letter:hover {
+      transform: translateY(-3.2%);
+    }
+    .ghost-letter:hover .g-fill {
+      opacity: 1;
+    }
+    .ghost-letter:hover .g-stroke {
+      opacity: 0.28;
+    }
+  }
+
+  /* Scanner light — the cursor is the lamp. A radius-shaped mask
+     reveals gradient-filled letters around the pointer; --sx/--sy
+     are springed motion values in percentages across the band. */
+  .ghost-spot {
+    color: transparent;
+    background: linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--actuary) 94%, transparent) 8%,
+      color-mix(in srgb, var(--risk) 92%, transparent) 92%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-mask-image: radial-gradient(
+      circle 48vw at var(--sx, 42%) var(--sy, 52%),
+      black 22%,
+      rgba(0, 0, 0, 0.65) 55%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      circle 48vw at var(--sx, 42%) var(--sy, 52%),
+      black 22%,
+      rgba(0, 0, 0, 0.65) 55%,
+      transparent 100%
+    );
+  }
+  @media (min-width: 1024px) {
+    .ghost-spot {
+      -webkit-mask-image: radial-gradient(
+        circle 30vw at var(--sx, 42%) var(--sy, 52%),
+        black 22%,
+        rgba(0, 0, 0, 0.65) 55%,
+        transparent 100%
+      );
+      mask-image: radial-gradient(
+        circle 30vw at var(--sx, 42%) var(--sy, 52%),
+        black 22%,
+        rgba(0, 0, 0, 0.65) 55%,
+        transparent 100%
+      );
+    }
+  }
+  /* colour bloom trailing the light — the scatter on the floor */
+  .ghost-spot-glow {
+    color: transparent;
+    opacity: 0.75;
+    filter: blur(7px);
+    background: radial-gradient(
+      circle 64vw at var(--sx, 42%) var(--sy, 52%),
+      color-mix(in srgb, var(--risk) 32%, transparent) 0%,
+      color-mix(in srgb, var(--actuary) 18%, transparent) 48%,
+      transparent 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  @media (min-width: 1024px) {
+    .ghost-spot-glow {
+      background: radial-gradient(
+        circle 44vw at var(--sx, 42%) var(--sy, 52%),
+        color-mix(in srgb, var(--risk) 32%, transparent) 0%,
+        color-mix(in srgb, var(--actuary) 18%, transparent) 48%,
+        transparent 100%
+      );
+    }
+  }
+
+  /* Edge dissolve — only the extreme canvas edges, so the word reads
+     end to end (was 22%, which swallowed the opening letters) */
+  .ghost-band {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 7%,
+      black 96%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 7%,
+      black 96%,
+      transparent 100%
+    );
+  }
+
+  /* Short laptop screens only (lg width, height ≤ 940px): where the
+     copy column dips toward the band, a SOFT melt — never an erasure.
+     The word stays readable through the veil; the copy stays on top
+     and the word keeps its mass end to end. */
+  .ghost-guard {
+    display: none;
+  }
+  @media (min-width: 1024px) and (max-height: 940px) {
+    .ghost-guard {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      width: 42%;
+      height: 40%;
+      pointer-events: none;
+      background: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--background) 45%, transparent) 0%,
+        color-mix(in srgb, var(--background) 15%, transparent) 45%,
+        transparent 80%
+      );
+    }
+  }
+
+  /* ---- Rising actuarial glyphs (data embers) ---- */
+  .ember {
+    animation: ember var(--ember-t, 12s) linear infinite;
+    animation-delay: var(--ember-d, 0s);
+    will-change: transform, opacity;
+  }
+
+  /* Console readouts read a touch brighter on dark glass */
+  .dark .console-chart {
+    filter: brightness(1.28) saturate(1.12);
+  }
+
+  /* ---- Editorial serif accent ---- */
+  .font-accent {
+    font-family: var(--font-instrument), ui-serif, Georgia, serif;
+  }
+
+  /* ---- Ledger dotted rows (dossier data stage) ---- */
+  .ledger-row {
+    border-bottom: 1px dashed color-mix(in srgb, currentColor 22%, transparent);
+  }
+
+  /* ---- Tabular numbers for data ---- */
+  .tnum {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes drawline {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulsering {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes ember {
+  0% {
+    transform: translate3d(0, 26px, 0) scale(0.94);
+    opacity: 0;
+  }
+  14% {
+    opacity: var(--ember-o, 0.55);
+  }
+  82% {
+    opacity: var(--ember-o, 0.55);
+  }
+  100% {
+    transform: translate3d(var(--ember-x, 14px), -92px, 0) scale(1.03);
+    opacity: 0;
+  }
+}
+
+/* ---- Custom cursor layers ---- */
+.cursor-layer {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.cursor-layer[data-visible="true"] {
+  opacity: 1;
+}
+@media (pointer: coarse) {
+  .cursor-layer {
+    display: none !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor-layer {
+    display: none !important;
+  }
+}
+/* hide native cursor only over immersive zones (project panels) */
+[data-cursor="view"] {
+  cursor: none;
+}
+
+/* Respect reduced motion — WCAG AA */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .draw-line {
+    stroke-dashoffset: 0 !important;
+  }
+}
